@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "WPF_Text_Editor/1.0.0": {
+        "runtime": {
+          "WPF_Text_Editor.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WPF_Text_Editor/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

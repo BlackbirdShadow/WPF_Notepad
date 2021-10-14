@@ -1,0 +1,103 @@
+﻿<Window x:Class="WPF_Text_Editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Text_Editor"
+        mc:Ignorable="d"
+        Title="The Лучший Text Editor" Height="450" Width="800">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:MainWindow.AboutCmd}"
+                       Executed="AboutCommandBinding_Executed"
+                       CanExecute="AboutCommandBinding_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.ClearCmd}"
+                       Executed="ClearCommandBinding_Executed"
+                       CanExecute="ClearCommandBinding_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.LoadCmd}"
+                       Executed="LoadCommandBinding_Executed"
+                       CanExecute="LoadCommandBinding_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.SaveCmd}"
+                       Executed="SaveCommandBinding_Executed"
+                       CanExecute="SaveCommandBinding_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.SaveAsCmd}"
+                       Executed="SaveAsCommandBinding_Executed"
+                       CanExecute="SaveAsCommandBinding_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.CloseCmd}"
+                       Executed="CloseCommandBinding_Executed"
+                       CanExecute="CloseCommandBinding_CanExecute"/>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Command="{x:Static local:MainWindow.ClearCmd}"
+                    Key="J"
+                    Modifiers="Ctrl"/>
+        <KeyBinding Command="{x:Static local:MainWindow.SaveCmd}"
+                    Key="S"
+                    Modifiers="Ctrl"/>
+        <KeyBinding Command="{x:Static local:MainWindow.SaveAsCmd}"
+                    Key="S"
+                    Modifiers="Ctrl+Shift"/>
+        <KeyBinding Command="{x:Static local:MainWindow.CloseCmd}"
+                    Key="W"
+                    Modifiers="Ctrl"/>
+        <KeyBinding Command="{x:Static local:MainWindow.LoadCmd}"
+                    Key="O"
+                    Modifiers="Ctrl"/>
+    </Window.InputBindings>
+    
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="Open" InputGestureText="Ctrl+O"
+                          Command="{x:Static local:MainWindow.LoadCmd}"/>
+                <MenuItem Header="Save" InputGestureText="Ctrl+S"
+                          Command="{x:Static local:MainWindow.SaveCmd}"/>
+                <MenuItem Header="Save As" InputGestureText="Ctrl+Shift+S"
+                          Command="{x:Static local:MainWindow.SaveAsCmd}"/>
+                <MenuItem Header="Clear"
+                          Command="{x:Static local:MainWindow.ClearCmd}"/>
+                <MenuItem Header="Close" InputGestureText="Ctrl+W"
+                          Command="{x:Static local:MainWindow.CloseCmd}"/>
+                <Separator/>
+                <MenuItem Header="Quit" InputGestureText="Alt+F4"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Copy" InputGestureText="Ctrl+C"/>
+                <MenuItem Header="Cut" InputGestureText="Ctrl+X"/>
+                <MenuItem Header="Paste" InputGestureText="Ctrl+V"/>
+            </MenuItem>
+            <MenuItem Header="Display">
+                <MenuItem Header="Normal"/>
+                <MenuItem Header="Web"/>
+                <MenuItem Header="Font Size">
+                    <MenuItem Header="12"/>
+                    <MenuItem Header="14"/>
+                    <MenuItem Header="16"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About"
+                          Command="{x:Static local:MainWindow.AboutCmd}"/>
+            </MenuItem>
+        </Menu>
+
+        <DockPanel Grid.Row ="1" Grid.Column="0" LastChildFill="True">
+            <TextBlock Name="NomFichier" DockPanel.Dock="Top" Text="No loaded file" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"  FontFamily="Trebuchet" Margin="3"/>
+            <ScrollViewer>
+                <TextBox Name="ContenuFichier"  Margin="4" AcceptsReturn="True" FontFamily="Trebuchet" />
+            </ScrollViewer>
+        </DockPanel>
+
+
+    </Grid>
+</Window>
